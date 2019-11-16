@@ -1,0 +1,87 @@
+module.exports = (app, db) => {
+
+  const sendResponse = (res, code, data = null) => res.status(code).send({
+    data: data,
+  });
+
+  // Get All Users
+  app.get('/users', (req, res) => {
+    db.query('SELECT * FROM users', (err, result) => {
+      if (err) throw err;
+
+      return sendResponse(res, 200, result);
+    });
+  });
+
+
+  // Get User By Id
+  app.get('/user/:id', (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+      return sendResponse(res, 400, '"id" param is required');
+    }
+
+    db.query('SELECT * FROM users where id=?', id, (err, result) => {
+      if (err) throw err;
+
+      const user = result[0];
+
+      return sendResponse(res, 200, user);
+    });
+  });
+
+
+  // Add a New User
+  app.post('/user', (req, res) => {
+    const user = req.body.user;
+
+    if (!user) {
+      return sendResponse(res, 400, '"user" param is required');
+    }
+
+    db.query("INSERT INTO users SET ? ", { user }, (err, result) => {
+      if (err) throw err;
+
+      return sendResponse(res, 200, result);
+    });
+  });
+
+
+  // Update User
+  app.put('/user', (req, res) => {
+    const id = req.body.id;
+    const user = req.body.user;
+
+    if (!user) {
+      return sendResponse(res, 400, '"user" param is required');
+    }
+    else if (!id) {
+      return sendResponse(res, 400, '"id" param is required');
+    }
+
+    db.query("UPDATE users SET user = ? WHERE id = ?", [user, id], (err, result) => {
+      if (err) throw err;
+
+      return sendResponse(res, 200, result);
+    });
+  });
+
+
+  // Delete User
+  app.delete('/user', (req, res) => {
+    const id = req.body.id;
+
+    if (!id) {
+      return sendResponse(res, 400, '"id" param is required');
+    }
+
+    db.query('DELETE FROM users WHERE id = ?', [id], function (err, result) {
+      if (err) throw err;
+
+      return sendResponse(res, 200, result);
+    });
+  });
+
+
+};
