@@ -1,45 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './LoginPage.scss';
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
 
 
 const LoginPage = (props) => {
+  const [isRegisterOpen, setIsRegister] = useState(false);
+
   return (
-    <div className="login__wrap">
-      <div className='login'>
-        <h1 className='login__title'>
-          Sign Up
-        </h1>
-
-        <div className="login__inner">
-          <div className='login__form-field'>
-            <input
-              className='login__input'
-              placeholder='Username'
-            />
-          </div>
-
-          <div className='login__form-field'>
-            <input
-              className='login__input'
-              placeholder='Password'
-            />
-          </div>
-
-          <button
-            className="login__btn-submit"
-          >
-            Log In
-          </button>
-
-          <button
-            className="login__btn-register"
-          >
-            Register ?
-          </button>
-        </div>
-      </div>
-    </div>
+    <>
+      {isRegisterOpen
+        ? (
+          <RegisterForm
+            changeView={() => setIsRegister(false)}
+          />
+        )
+        : (
+          <LoginForm
+            changeView={() => setIsRegister(true)}
+          />
+        )
+      }
+    </>
   )
 };
 

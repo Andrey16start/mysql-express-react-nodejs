@@ -1,43 +1,38 @@
 .login{
   width: 560px;
-  border-radius: 6px;
 
   &__wrap{
     background-image: url(/images/login-bg.jpg);
     background-size: cover;
     width: 100vw;
     height: 100vh;
+    padding: 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &__title{
-    font-size: 16px;
-    text-align: center;
-    color: #fff;
-    margin: 0;
-    padding: 25px 15px;
-    border-radius: 6px 6px 0 0;
-    background-color: rgb(20, 69, 102);
-  }
-  &__inner{
-    padding: 30px;
-    background-color: rgba(41, 128, 185, 0.3);
-  }
   &__form-field{
-
+    position: relative;
+    margin-bottom: 25px;
+    font-weight: 500;
   }
   &__input{
+    color: #144566;
+    font-weight: 500;
     width: 100%;
-    border: none;
-    margin-bottom: 25px;
+    border: 1px solid #144566;
     padding: 10px 15px;
+
+    &--error{
+      border-color: #c0392b;
+    }
   }
-  &__btn-submit, &__btn-register{
-    display: block;
-    border: none;
-    outline: none;
-    cursor: pointer;
+  &__input-error{
+    color: #c0392b;
+    position: absolute;
+    left: 0;
+    bottom: -1em;
+    z-index: 1;
   }
   &__btn-submit{
     background-color: #3498db;
@@ -46,6 +41,7 @@
     padding: 10px 0;
     border-radius: 4px;
     transition: background-color 0.15s;
+    display: block;
 
     &:hover{
       background-color: rgb(49, 142, 204);
@@ -53,8 +49,10 @@
   }
   &__btn-register{
     background: none;
-    color: #fff;
+    color: #000;
+    font-weight: 500;
     margin: auto;
     margin-top: 30px;
+    display: block;
   }
 }
