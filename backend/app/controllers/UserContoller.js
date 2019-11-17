@@ -34,16 +34,22 @@ module.exports = (app, db) => {
 
   // Add a New User
   app.post('/user', (req, res) => {
-    const user = req.body.user;
+    const {
+      username,
+      password,
+    } = req.body;
 
-    if (!user) {
-      return sendResponse(res, 400, '"user" param is required');
-    }
+    if (!username) return sendResponse(res, 400, 'username is required');
+    else if (!password) return sendResponse(res, 400, 'passwod is required');
+    else if (typeof username !== 'string') return sendResponse(res, 400, 'username must be a string');
+    else if (typeof password !== 'string') return sendResponse(res, 400, 'password must be a string');
 
-    db.query("INSERT INTO users SET ? ", { user }, (err, result) => {
+    const user = { username, password };
+
+    db.query("INSERT INTO users SET ? ", user, (err) => {
       if (err) throw err;
 
-      return sendResponse(res, 200, result);
+      return sendResponse(res, 200, user);
     });
   });
 

@@ -2,11 +2,17 @@ import React from "react";
 import { Form } from 'react-final-form';
 
 import FormField from "../../../components/FormField";
+import api from "../../../api/api";
 
 
 const RegisterForm = (props) => {
   const onSubmit = (values) => {
-    console.log(values);
+    const {
+      username,
+      password,
+    } = values;
+
+    api.createUser({ username, password });
   };
 
   return (

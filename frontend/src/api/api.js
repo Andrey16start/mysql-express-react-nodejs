@@ -5,19 +5,7 @@ const getUsers = () => {
 };
 
 const createUser = (user) => {
-  const {
-    id,
-    username,
-    password,
-  } = user;
-
-  const User = new FormData();
-
-  User.set('id', id);
-  User.set('username', username);
-  User.set('password', password);
-
-  return axios.post('user', User);
+  return axios.post('user', user);
 };
 
 export default {
