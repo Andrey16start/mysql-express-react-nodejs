@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 
+import './api-config';
+
 import './App.scss';
 import MainPage from "./scenes/MainPage/MainPage";
 import NotFound from "./scenes/NotFound/NotFound";
