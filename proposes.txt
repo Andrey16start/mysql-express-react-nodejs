@@ -1,4 +1,4 @@
 1. Send users in parts
 2. Add connectToken in cookies
-3. Use WebSocket
+3. Use WebSocket. ping-pong, JWT toket
 4. Show server errors in form

@@ -8,7 +8,10 @@ const createUser = (user) => {
   return axios.post('user', user);
 };
 
+const testDevPost = () => axios.post('test-dev-post');
+
 export default {
   getUsers,
   createUser,
+  testDevPost,
 };

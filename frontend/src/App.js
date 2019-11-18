@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import './api-config';
 
 import './App.scss';
+import Socket from './components/Socket';
 import MainPage from "./scenes/MainPage/MainPage";
 import NotFound from "./scenes/NotFound/NotFound";
 import LoginPage from './scenes/LoginPage/LoginPage';
@@ -12,6 +13,8 @@ import LoginPage from './scenes/LoginPage/LoginPage';
 const App = () => {
   return (
     <>
+      <Socket />
+
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/login" component={LoginPage} />
