@@ -14,14 +14,15 @@ const wsServerPort = 8080;
 
 const app = express();
 const wss = new WebSocket.Server({ port: wsServerPort });
-let WS; // TODO: WS must be object
+const CLIENTS = [];
 
 
-wss.on('connection', (socket) => {
-  console.log('on server ' + wss.clients.size + ' clients');
-  WS = socket; // TODO: WS[jwn_token] = socket. socket is socket for current connected user
+wss.on('connection', (ws) => {
+  console.log('Client connected. On server ' + wss.clients.size + ' clients');
 
-  WS.on('message', (message) => {
+  CLIENTS.push(socket);
+
+  ws.on('message', (message) => {
     const { data, type } = JSON.parse(message);
 
     switch (type) {
@@ -31,17 +32,35 @@ wss.on('connection', (socket) => {
     }
   });
 
-  WS.on('close', () => {
-    clearImmediate(ping);
+  ws.on('close', () => {
+    console.log('Client Disconnected');
+
+    clearInterval(ping);
+
+    CLIENTS.splice(CLIENTS.indexOf(ws), 1);
+  });
+  
+  ws.on('error', () => {
+    clearInterval(ping);
+
+    CLIENTS.splice(CLIENTS.indexOf(ws), 1);
   });
 
   const ping = setInterval(() => {
-    WS.send(JSON.stringify({
+    ws.send(JSON.stringify({
       type: 'ping',
       data: 'ping',
     }))
   }, 5000);
 });
+
+const sendSocketToAll = (message) => {
+  CLIENTS.forEach(client => {
+    const isConnected = client.readyState === CLIENTS[0].OPEN;
+
+    isConnected && client.send(JSON.stringify(message));
+  });
+}
 
 
 app.use(bodyParser.json());
