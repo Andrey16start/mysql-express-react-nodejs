@@ -1,4 +1,5 @@
-1. Send users in parts
-2. Add connectToken in cookies
-3. Use WebSocket. ping-pong, JWT toket
-4. Show server errors in form
+1. Send users in parts. limit, offset.
+2. Add connectToken in cookies (JWT).
+3. Use WebSocket. ping-pong.
+4. Show errors from server in form validation
+5. Add SSL certificate
