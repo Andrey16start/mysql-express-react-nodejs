@@ -1,8 +1,9 @@
 import React from "react";
 import { Form } from 'react-final-form';
 
-import FormField from "../../../components/FormField";
 import api from "../../../api/api";
+
+import FormField from "../../../components/FormField";
 
 
 const RegisterForm = (props) => {

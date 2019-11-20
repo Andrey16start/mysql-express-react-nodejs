@@ -16,7 +16,7 @@ const App = () => {
       <Socket />
 
       <Switch>
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/" component={LoginPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route path="/not-found" component={NotFound} />
         <Redirect to="/not-found" />

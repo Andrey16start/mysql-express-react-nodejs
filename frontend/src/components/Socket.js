@@ -10,9 +10,9 @@ class Socket extends Component {
   }
 
   componentDidMount() {
-    // if (localStorage.connectToken) {
-    this.setupSocket();
-    // }
+    if (localStorage.connectToken) {
+      this.setupSocket();
+    }
   }
 
   shouldComponentUpdate() {

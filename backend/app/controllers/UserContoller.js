@@ -40,9 +40,9 @@ module.exports = (app, db) => {
     } = req.body;
 
     if (!username) return sendResponse(res, 400, 'username is required');
-    else if (!password) return sendResponse(res, 400, 'passwod is required');
-    else if (typeof username !== 'string') return sendResponse(res, 400, 'username must be a string');
-    else if (typeof password !== 'string') return sendResponse(res, 400, 'password must be a string');
+    if (!password) return sendResponse(res, 400, 'passwod is required');
+    if (typeof username !== 'string') return sendResponse(res, 400, 'username must be a string');
+    if (typeof password !== 'string') return sendResponse(res, 400, 'password must be a string');
 
     const user = { username, password };
 
@@ -86,6 +86,24 @@ module.exports = (app, db) => {
       if (err) throw err;
 
       return sendResponse(res, 200, result);
+    });
+  });
+
+
+  // Auth
+  app.post('/login', (req, res) => {
+    const {
+      username,
+      password,
+    } = req.body;
+
+    if (!username) return sendResponse(res, 400, 'username is required');
+    if (!password) return sendResponse(res, 400, 'passwod is required');
+
+    db.query('SELECT * FROM users where username=? AND password=?', [username, password], (err, result) => {
+      console.log('Result', result);
+
+      return sendResponse(res, 413, 'nahooi');
     });
   });
 

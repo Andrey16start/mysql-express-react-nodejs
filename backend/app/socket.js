@@ -9,7 +9,11 @@ const logActiveClients = () => {
   console.log('On server ' + wss.clients.size + ' clients');
 };
 const removeClient = (ws) => {
-  CLIENTS.splice(CLIENTS.indexOf(ws), 1);
+  const clientIndex = CLIENTS.indexOf(ws);
+
+  if (clientIndex === -1) return;
+
+  CLIENTS.splice(clientIndex, 1);
 };
 
 wss.on('connection', (ws) => {
@@ -30,15 +34,19 @@ wss.on('connection', (ws) => {
 
   ws.on('close', () => {
     console.log('Client Disconnected');
-    clearInterval(ping);
     logActiveClients();
+
+    clearInterval(ping);
+
     removeClient(ws);
   });
 
   ws.on('error', () => {
     console.log('Client Disconnected By Error');
-    clearInterval(ping);
     logActiveClients();
+
+    clearInterval(ping);
+
     removeClient(ws);
   });
 
