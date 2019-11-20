@@ -1,66 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const WebSocket = require('ws');
 
 const dbUserData = require('./config/dbUserData');
-const {
-  initUserController
-} = require('./controllers');
-
+const { initUserController } = require('./controllers');
+const { sendSocketToAll } = require('./socket');
 
 const serverPort = 8000;
-const wsServerPort = 8080;
-
 const app = express();
-const wss = new WebSocket.Server({ port: wsServerPort });
-const CLIENTS = [];
-
-
-wss.on('connection', (ws) => {
-  console.log('Client connected. On server ' + wss.clients.size + ' clients');
-
-  CLIENTS.push(socket);
-
-  ws.on('message', (message) => {
-    const { data, type } = JSON.parse(message);
-
-    switch (type) {
-      case 'pong': {
-
-      }
-    }
-  });
-
-  ws.on('close', () => {
-    console.log('Client Disconnected');
-
-    clearInterval(ping);
-
-    CLIENTS.splice(CLIENTS.indexOf(ws), 1);
-  });
-  
-  ws.on('error', () => {
-    clearInterval(ping);
-
-    CLIENTS.splice(CLIENTS.indexOf(ws), 1);
-  });
-
-  const ping = setInterval(() => {
-    ws.send(JSON.stringify({
-      type: 'ping',
-      data: 'ping',
-    }))
-  }, 5000);
-});
-
-const sendSocketToAll = (message) => {
-  CLIENTS.forEach(client => {
-    const isConnected = client.readyState === CLIENTS[0].OPEN;
-
-    isConnected && client.send(JSON.stringify(message));
-  });
-}
 
 
 app.use(bodyParser.json());
