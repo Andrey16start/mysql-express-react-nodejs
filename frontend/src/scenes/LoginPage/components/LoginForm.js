@@ -37,7 +37,7 @@ const LiginForm = (props) => {
           </button>
 
           <button
-            className="login__btn-register"
+            className="login__btn-link"
             onClick={() => props.changeView()}
           >
             Register ?

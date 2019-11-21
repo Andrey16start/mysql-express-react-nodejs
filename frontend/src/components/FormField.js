@@ -22,7 +22,7 @@ const FormField = (props) => {
           />
 
           {meta.touched && meta.error && !meta.active && (
-            <span className={`${className}__input-error`}>{meta.error}</span>
+            <span className={`${className}__input-error-text`}>{meta.error}</span>
           )}
         </div>
       )}

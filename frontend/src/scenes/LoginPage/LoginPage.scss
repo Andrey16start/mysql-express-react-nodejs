@@ -20,39 +20,56 @@
     color: #144566;
     font-weight: 500;
     width: 100%;
-    border: 1px solid #144566;
     padding: 10px 15px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 2px solid #004156;
 
+    &::placeholder{
+      color: #144566;
+    }
     &--error{
       border-color: #c0392b;
+
+      &::placeholder{
+        color: #c0392b;
+      }
     }
   }
-  &__input-error{
+  &__input-error-text{
     color: #c0392b;
     position: absolute;
     left: 0;
-    bottom: -1em;
+    bottom: calc(-1em - 3px);
     z-index: 1;
   }
   &__btn-submit{
-    background-color: #3498db;
-    width: 100%;
+    background-color: #4A69FF;
+    width: 60%;
     color: #fff;
-    padding: 10px 0;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 15px 0;
+    margin: auto;
     border-radius: 4px;
     transition: background-color 0.15s;
     display: block;
 
     &:hover{
-      background-color: rgb(49, 142, 204);
+      background-color: #0351C1;
     }
   }
-  &__btn-register{
+  &__btn-link{
     background: none;
     color: #000;
     font-weight: 500;
     margin: auto;
     margin-top: 30px;
     display: block;
+
+    &:hover{
+      color: #0351C1;
+    }
   }
 }
