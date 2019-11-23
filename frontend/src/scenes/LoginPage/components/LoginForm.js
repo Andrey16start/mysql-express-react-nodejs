@@ -13,21 +13,21 @@ const LiginForm = (props) => {
         <div className="card__inner">
           <div className='login__form-field'>
             <input
-              className='login__input'
+              className='input'
               placeholder='Username'
             />
           </div>
 
           <div className='login__form-field'>
             <input
-              className='login__input'
+              className='input'
               placeholder='Password'
               type='password'
             />
           </div>
 
           <button
-            className="login__btn-submit"
+            className="btn btn--primary login__btn-submit"
             onClick={() => api.login({
               username: 'Andrey',
               password: 'qwerty',
@@ -37,7 +37,7 @@ const LiginForm = (props) => {
           </button>
 
           <button
-            className="login__btn-link"
+            className="btn-link login__btn-link"
             onClick={() => props.changeView()}
           >
             Register ?

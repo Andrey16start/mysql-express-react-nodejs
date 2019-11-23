@@ -16,60 +16,15 @@
     margin-bottom: 25px;
     font-weight: 500;
   }
-  &__input{
-    color: #144566;
-    font-weight: 500;
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    outline: none;
-    background: none;
-    border-bottom: 2px solid #004156;
-
-    &::placeholder{
-      color: #144566;
-    }
-    &--error{
-      border-color: #c0392b;
-
-      &::placeholder{
-        color: #c0392b;
-      }
-    }
-  }
-  &__input-error-text{
-    color: #c0392b;
-    position: absolute;
-    left: 0;
-    bottom: calc(-1em - 3px);
-    z-index: 1;
-  }
   &__btn-submit{
-    background-color: #4A69FF;
     width: 60%;
-    color: #fff;
-    font-weight: 500;
-    letter-spacing: 2px;
     padding: 15px 0;
     margin: auto;
-    border-radius: 4px;
-    transition: background-color 0.15s;
     display: block;
-
-    &:hover{
-      background-color: #0351C1;
-    }
   }
   &__btn-link{
-    background: none;
-    color: #000;
-    font-weight: 500;
     margin: auto;
     margin-top: 30px;
     display: block;
-
-    &:hover{
-      color: #0351C1;
-    }
   }
 }

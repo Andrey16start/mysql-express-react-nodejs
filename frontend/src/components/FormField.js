@@ -9,20 +9,30 @@ const FormField = (props) => {
     className,
   } = props;
 
+  const classNames = {
+    formField: className + '__form-field',
+    input: 'input' + (className ? ` ${className}__input` : ''),
+    inputWithError: 'input--error' + (className ? ` ${className}__input--error` : ''),
+    inputErrorText: 'input-error-text' + (className ? ` ${className}__input-error-text` : ''),
+  };
+
+  const getInputErrorClassName = (meta) => meta.touched && meta.error && !meta.active
+    ? ' ' + classNames.inputWithError
+    : '';
+
   return (
     <Field name={name}>
       {({ input, meta }) => (
-        <div className={className + '__form-field'}>
+        <div className={classNames.formField}>
           <input
             {...input}
             placeholder={placeholderText}
-            className={`${className}__input` +
-              (meta.touched && meta.error && !meta.active ? ` ${className}__input--error` : '')}
+            className={classNames.input + getInputErrorClassName(meta)}
             autoComplete='off'
           />
 
           {meta.touched && meta.error && !meta.active && (
-            <span className={`${className}__input-error-text`}>{meta.error}</span>
+            <span className={classNames.inputErrorText}>{meta.error}</span>
           )}
         </div>
       )}

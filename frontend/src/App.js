@@ -6,6 +6,8 @@ import './api-config';
 import { initApp } from './ducks/auth';
 import useDidMount from './hooks/useDidMount';
 
+import { ROUTES } from './constants';
+
 import './App.scss';
 import Socket from './components/Socket';
 import MainPage from "./scenes/MainPage/MainPage";
@@ -24,8 +26,7 @@ const PrivateRoutes = (props) => {
       <Socket />
 
       <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Redirect to="/not-found" />
+        <Route path="/" component={MainPage} />
       </Switch>
     </>
   );
@@ -40,12 +41,12 @@ const ConnectedPrivateRoutes = connect(null, mapDispatchToProps)(PrivateRoutes);
 const App = () => {
   return (
     <Switch>
-      <Route exact path="/login" component={LoginPage} />
+      <Route exact path={ROUTES.login} component={LoginPage} />
 
       <PrivateRoute path="/" component={ConnectedPrivateRoutes} />
 
-      <Route path="/not-found" component={NotFound} />
-      <Redirect to="/not-found" />
+      <Route path={ROUTES.notFound} component={NotFound} />
+      <Redirect to={ROUTES.notFound} />
     </Switch>
   );
 }

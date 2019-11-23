@@ -50,3 +50,59 @@ h1{
     border-radius: 0 0 6px 6px;
   }
 }
+
+.btn{
+  font-weight: 500;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+
+  &--primary{
+    background-color: #4A69FF;
+    color: #fff;
+
+    &:hover{
+      background-color: #0351C1;
+    }
+  }
+}
+.btn-link{
+  background: none;
+  color: #000;
+  font-weight: 500;
+  transition: color 0.25s;
+
+  &:hover{
+    color: #0351C1;
+  }
+}
+
+.input{
+  color: #144566;
+  font-weight: 500;
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 2px solid #004156;
+
+  &::placeholder{
+    color: #144566;
+  }
+  &--error{
+    border-color: #c0392b;
+    color: #c0392b;
+
+    &::placeholder{
+      color: #c0392b;
+    }
+  }
+}
+.input-error-text{
+  color: #c0392b;
+  position: absolute;
+  left: 0;
+  bottom: calc(-1em - 3px);
+  z-index: 1;
+}

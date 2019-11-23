@@ -51,13 +51,13 @@ const RegisterForm = (props) => {
               />
 
               <button
-                className="login__btn-submit"
+                className="btn btn--primary login__btn-submit"
                 type='submit'>
                 Register
               </button>
 
               <button
-                className="login__btn-link"
+                className="btn-link login__btn-link"
                 onClick={() => props.changeView()}>
                 Go Back
               </button>

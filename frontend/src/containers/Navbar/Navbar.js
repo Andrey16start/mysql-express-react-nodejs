@@ -5,7 +5,10 @@ import {
   faEnvelope,
   faUsers,
   faBell,
+  faProjectDiagram,
 } from '@fortawesome/free-solid-svg-icons'
+
+import { ROUTES } from "../../constants";
 
 import './Navbar.scss';
 import NavbarItem from "./components/NavbarItem";
@@ -19,25 +22,32 @@ const Navbar = (props) => {
       <NavbarItem
         icon={faHome}
         text='Home'
+        link='/'
         isActive={path === '/'}
       />
-
+      <NavbarItem
+        icon={faProjectDiagram}
+        text='My Network'
+        link={ROUTES.network}
+        isActive={path === ROUTES.network}
+      />
       <NavbarItem
         icon={faUsers}
         text='People'
-        isActive={path === '/people'}
+        link={ROUTES.people}
+        isActive={path === ROUTES.people}
       />
-
       <NavbarItem
         icon={faEnvelope}
         text='Messages'
-        isActive={path === '/messages'}
+        link={ROUTES.messages}
+        isActive={path === ROUTES.messages}
       />
-
       <NavbarItem
         icon={faBell}
         text='Notifications'
-        isActive={path === '/notifications'}
+        link={ROUTES.notifications}
+        isActive={path === ROUTES.notifications}
       />
     </nav>
   )
