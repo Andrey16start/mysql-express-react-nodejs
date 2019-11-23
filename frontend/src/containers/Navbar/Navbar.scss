@@ -1,0 +1,30 @@
+.navbar{
+  background: #283e4a;
+  display: flex;
+  padding: 0 15px;
+
+  &__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #D5D5D5;
+    padding: 10px 15px 0;
+    cursor: pointer;
+    transition: color 0.25s;
+
+    &:hover{
+      color: #fff;
+    }
+    &--active{
+      color: #fff;
+      border-bottom: 2px solid #fff;
+    }
+  }
+  &__item-icon{
+    font-size: 18px;
+  }
+  &__item-text{
+    font-size: 12px;
+    margin: 5px 0;
+  }
+}

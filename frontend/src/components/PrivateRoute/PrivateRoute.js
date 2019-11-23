@@ -10,7 +10,8 @@ const Empty = () => {
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route {...rest} render={props => (
-    localStorage.user
+    // localStorage.user
+    true
       ? <Component {...rest} {...props} />
       : <Empty />
   )} />

@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route, Switch } from "react-router-dom";
+
+import './MainPage.scss';
+import Navbar from '../../containers/Navbar/Navbar';
 
 
-class MainPage extends Component {
-  render() {
-    return (
-      <div>
-        MainPage
-      </div>
-    );
-  }
-}
+const MainPage = (props) => {
+  return (
+    <div className="main-page">
+      <Switch>
+        <Route path="/" component={Navbar} />
+      </Switch>
+    </div>
+  );
+};
 
 export default MainPage;

@@ -20,14 +20,14 @@ const PrivateRoutes = (props) => {
   });
 
   return (
-    <div className="main-page">
+    <>
       <Socket />
 
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Redirect to="/" />
+        <Redirect to="/not-found" />
       </Switch>
-    </div>
+    </>
   );
 };
 
