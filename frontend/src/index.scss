@@ -65,6 +65,13 @@ h1{
       background-color: #0351C1;
     }
   }
+  &:disabled{
+    cursor: not-allowed;
+
+    &:hover{
+      background-color: #808080;
+    }
+  }
 }
 .btn-link{
   background: none;
