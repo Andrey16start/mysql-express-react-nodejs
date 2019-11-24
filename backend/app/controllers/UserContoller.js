@@ -101,9 +101,19 @@ module.exports = (app, db) => {
     if (!password) return sendResponse(res, 400, 'passwod is required');
 
     db.query('SELECT * FROM users where username=? AND password=?', [username, password], (err, result) => {
-      console.log('Result', result);
+      if (err) {
+        return sendResponse(res, 500, 'Server Error');
+      }
 
-      return sendResponse(res, 413, 'nahooi');
+      const user = result[0];
+
+      if (!user) {
+        return sendResponse(res, 400, 'Incorrect Data');
+      };
+
+      delete user.password;
+
+      return sendResponse(res, 200, user);
     });
   });
 

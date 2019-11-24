@@ -3,3 +3,4 @@
 3. Use WebSocket. ping-pong.
 4. Show errors from server in form validation
 5. Add SSL certificate
+6. add debounce function, use it when log in
