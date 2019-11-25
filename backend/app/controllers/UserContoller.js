@@ -1,8 +1,6 @@
 module.exports = (app, db) => {
 
-  const sendResponse = (res, code, data = null) => res.status(code).send({
-    data: data,
-  });
+  const sendResponse = (res, code, data = null) => res.status(code).send(data);
 
   // Get All Users
   app.get('/users', (req, res) => {

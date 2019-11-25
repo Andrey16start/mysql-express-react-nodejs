@@ -14,7 +14,15 @@ const LiginForm = (props) => {
 
     api.login({ username, password })
       .then(console.log)
-      .catch(err => console.dir(err));
+      .catch(err => {
+        console.dir(err);
+
+        const response = err && err.response;
+
+        if (response && response.status === 400 && response.data === 'Incorrect Data') {
+          console.log('Incorrect');
+        }
+      });
   };
 
   return (

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import exampleReducer from '../ducks/example';
+import authReducer from '../ducks/auth';
+import notificationsReducer from '../ducks/notifications';
 
 
 export default combineReducers({
-  example: exampleReducer,
+  auth: authReducer,
+  notifications: notificationsReducer,
 });
