@@ -14,6 +14,7 @@ import MainPage from "./scenes/MainPage/MainPage";
 import NotFound from "./scenes/NotFound/NotFound";
 import LoginPage from './scenes/LoginPage/LoginPage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Toasters from './containers/Toasters/Toasters';
 
 
 const PrivateRoutes = (props) => {
@@ -38,8 +39,8 @@ const mapDispatchToProps = {
 
 const ConnectedPrivateRoutes = connect(null, mapDispatchToProps)(PrivateRoutes);
 
-const App = () => {
-  return (
+const App = () => (
+  <>
     <Switch>
       <Route exact path={ROUTES.login} component={LoginPage} />
 
@@ -48,7 +49,9 @@ const App = () => {
       <Route path={ROUTES.notFound} component={NotFound} />
       <Redirect to={ROUTES.notFound} />
     </Switch>
-  );
-}
+
+    <Toasters />
+  </>
+);
 
 export default App;

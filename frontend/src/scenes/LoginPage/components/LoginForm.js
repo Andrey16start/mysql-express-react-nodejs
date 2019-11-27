@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { Form } from 'react-final-form';
 
 import api from "../../../api/api";
+import { addNotification } from "../../../ducks/notifications";
+import { NOTIFICATIONS } from "../../../constants";
 
 import FormField from "../../../components/FormField";
+
 
 const LiginForm = (props) => {
   const onSubmit = (values) => {
@@ -20,7 +24,12 @@ const LiginForm = (props) => {
         const response = err && err.response;
 
         if (response && response.status === 400 && response.data === 'Incorrect Data') {
-          console.log('Incorrect');
+          props.addNotification({
+            type: NOTIFICATIONS.loginError,
+            text: 'Login Error. ' + response.data,
+            duration: 3,
+            color: 'red',
+          });
         }
       });
   };
@@ -66,7 +75,7 @@ const LiginForm = (props) => {
                 onClick={() => props.changeView()}
                 type='button'
               >
-                Register ?
+                Create Account
               </button>
             </form>
           )}
@@ -89,4 +98,8 @@ const validate = (values) => {
   return errors;
 };
 
-export default LiginForm;
+const mapDispatchToProps = {
+  addNotification,
+};
+
+export default connect(null, mapDispatchToProps)(LiginForm);

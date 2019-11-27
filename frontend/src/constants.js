@@ -7,3 +7,7 @@ export const ROUTES = {
   messages: '/messages',
   notifications: '/notifications',
 };
+
+export const NOTIFICATIONS = {
+  loginError: 'LOGIN_ERROR',
+};

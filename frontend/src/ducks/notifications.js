@@ -3,9 +3,25 @@ export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 
 
 export const addNotification = (config) => dispatch => {
+  const {
+    duration = null,
+    color = 'yellow',
+    text = '',
+  } = config;
+
+  const dateCreated = new Date();
+  const id = dateCreated.getTime();
+
   dispatch({
     type: ADD_NOTIFICATION,
-    payload: 2, // TODO:
+    payload: {
+      id,
+      dateCreated,
+      duration,
+      color,
+      text,
+      ...config,
+    }
   });
 };
 
@@ -30,14 +46,19 @@ export default (state = initialState, action) => {
     case ADD_NOTIFICATION: {
       return {
         ...state,
+        ids: [payload.id, ...state.ids],
+        entities: {
+          ...state.entities,
+          [payload.id]: payload,
+        },
       }
     }
     case REMOVE_NOTIFICATION: {
-      const notification = state.entities[payload];
-
-      if (!notification) return state;
+      if (!state.entities[payload]) return state;
 
       const updatedEntities = { ...state.entities };
+
+      delete updatedEntities[payload];
 
       return {
         ...state,
