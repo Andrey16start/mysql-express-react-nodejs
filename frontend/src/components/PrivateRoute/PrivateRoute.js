@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 const Empty = () => {
   window.location = '/login';
 
-  return null
+  return null;
 };
 
 

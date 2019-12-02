@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+
+const secretKey = 'My-project-secred-key';
+
 module.exports = (app, db) => {
 
   const sendResponse = (res, code, data = null) => res.status(code).send(data);
@@ -110,6 +114,7 @@ module.exports = (app, db) => {
       };
 
       delete user.password;
+      user.token = jwt.sign({ ...user }, secretKey);
 
       return sendResponse(res, 200, user);
     });

@@ -17,20 +17,27 @@ const LiginForm = (props) => {
     } = values;
 
     api.login({ username, password })
-      .then(console.log)
+      .then(res => {
+        console.log(res.data);
+      })
       .catch(err => {
         console.dir(err);
+        if (!err) return;
 
-        const response = err && err.response;
+        const response = err.response;
 
-        if (response && response.status === 400 && response.data === 'Incorrect Data') {
-          props.addNotification({
-            type: NOTIFICATIONS.loginError,
-            text: 'Login Error. ' + response.data,
-            duration: 3,
-            color: 'red',
-          });
-        }
+        if (!response) return props.addNotification({
+          type: NOTIFICATIONS.loginError,
+          text: 'Nerwork Error.',
+          duration: 3,
+          color: 'red',
+        });
+        if (response.status === 400 && response.data === 'Incorrect Data') return props.addNotification({
+          type: NOTIFICATIONS.loginError,
+          text: 'Login Error. ' + response.data,
+          duration: 3,
+          color: 'red',
+        });
       });
   };
 
