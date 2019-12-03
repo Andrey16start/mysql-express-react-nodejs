@@ -7,17 +7,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #D5D5D5;
+    color: #fff;
     padding: 10px 15px 0;
     cursor: pointer;
     transition: color 0.25s;
 
     &:hover{
-      color: #fff;
+      color: #51EAFF;
     }
     &--active{
-      color: #fff;
-      border-bottom: 2px solid #fff;
+      color: #51EAFF;
+      border-bottom: 2px solid #51EAFF;
     }
   }
   &__item-icon{

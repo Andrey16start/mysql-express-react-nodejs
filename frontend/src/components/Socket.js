@@ -14,10 +14,10 @@ class Socket extends Component {
       this.setupSocket();
     }
 
-    this.state.ws.onerror = () => {
+    this.state.ws.addEventListener('error', () => {
       localStorage.removeItem('token');
       window.location = '/login';
-    }
+    });
   }
 
   shouldComponentUpdate() {
