@@ -10,8 +10,13 @@ class Socket extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.connectToken) {
+    if (localStorage.token) {
       this.setupSocket();
+    }
+
+    this.state.ws.onerror = () => {
+      localStorage.removeItem('token');
+      window.location = '/login';
     }
   }
 
@@ -33,10 +38,14 @@ class Socket extends Component {
 
     webSocket.onclose = () => {
       console.log('WebSocket disconnected!(');
+      localStorage.removeItem('token');
+      window.location = '/login';
     }
 
     webSocket.onerror = (err) => {
       console.log('WebSocket error: ', err);
+      localStorage.removeItem('token');
+      window.location = '/login';
     }
 
     webSocket.onmessage = (e) => {
@@ -46,7 +55,10 @@ class Socket extends Component {
 
       switch (type) {
         case 'ping': {
-          webSocket.send(JSON.stringify({ type: 'pong', data: 'pong' }));
+          webSocket.send(JSON.stringify({
+            type: 'pong',
+            data: localStorage.getItem('token'),
+          }));
           break;
         }
         default:

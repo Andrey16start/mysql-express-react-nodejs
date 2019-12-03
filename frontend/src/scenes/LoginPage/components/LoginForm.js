@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Form } from 'react-final-form';
 
 import api from "../../../api/api";
@@ -19,6 +20,11 @@ const LiginForm = (props) => {
     api.login({ username, password })
       .then(res => {
         console.log(res.data);
+        if (!res.data) {
+          return;
+        }
+        localStorage.setItem('token', res.data.token);
+        props.history.push('/');
       })
       .catch(err => {
         console.dir(err);
@@ -109,4 +115,4 @@ const mapDispatchToProps = {
   addNotification,
 };
 
-export default connect(null, mapDispatchToProps)(LiginForm);
+export default connect(null, mapDispatchToProps)(withRouter(LiginForm));

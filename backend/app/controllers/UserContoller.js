@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const secretKey = 'My-project-secred-key';
 
-module.exports = (app, db) => {
+module.exports = (app, db, ACTIVE_TOKENS) => {
 
   const sendResponse = (res, code, data = null) => res.status(code).send(data);
 
@@ -106,15 +106,17 @@ module.exports = (app, db) => {
       if (err) {
         return sendResponse(res, 500, 'Server Error');
       }
-
       const user = result[0];
 
       if (!user) {
         return sendResponse(res, 400, 'Incorrect Data');
-      };
-
+      }
       delete user.password;
-      user.token = jwt.sign({ ...user }, secretKey);
+
+      const token = jwt.sign({ ...user }, secretKey);
+
+      user.token = token;
+      ACTIVE_TOKENS.push(token);
 
       return sendResponse(res, 200, user);
     });

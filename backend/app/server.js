@@ -4,10 +4,12 @@ const mysql = require('mysql');
 
 const dbUserData = require('./config/dbUserData');
 const { initUserController } = require('./controllers');
-const { sendSocketToAll } = require('./socket');
+const initSocket = require('./socket');
 
 const serverPort = 8000;
 const app = express();
+
+const ACTIVE_TOKENS = [];
 
 
 app.use(bodyParser.json());
@@ -44,7 +46,8 @@ app.post('/test-dev-post', (req, res) => {
   return res.status(200).send({ message: null });
 })
 
-initUserController(app, db);
+initSocket(ACTIVE_TOKENS);
+initUserController(app, db, ACTIVE_TOKENS);
 
 app.listen(serverPort, () => {
   console.log('Node app is running on port ' + serverPort);
